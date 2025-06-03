@@ -3,14 +3,13 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 import json
 import os
 from utils.content_manager import ContentManager
-
+load_dotenv()  # بارگذاری متغیرهای محیطی
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')  # خواندن توکن از محیط
 # تنظیمات
 TOKEN = "YOUR_BOT_TOKEN"
 CONTENT_FILE = "content.json"
-
 # مدیریت محتوا
 content_mgr = ContentManager()
-
 def start(update: Update, context: CallbackContext):
     # بارگذاری محتوا
     context.bot_data['content'] = content_mgr.load_content(CONTENT_FILE)
